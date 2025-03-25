@@ -17,9 +17,8 @@ This Bold BI React Native CLI sample, using Node.js, includes examples of dashbo
 
 ### Supported Browsers
   
-* Google Chrome
-* Microsoft Edge
-* Mozilla Firefox
+* Google Chrome for Android
+* Microsoft Edge for iOS
 
 ## Configuration
 
