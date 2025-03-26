@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { WebView } from "react-native-webview";
 
 export default function HomeScreen() {
+  const [embedConfig, setEmbedConfig] = useState(null);
+
+  const apiHost = "http://10.0.2.2:8080";  // Use emulator IP instead of localhost
+  const authorizationServerAPI='/authorizationserver';
+  const getDetailsUrl='/getdetails';
+
+  useEffect(() => {
+    fetch(apiHost+getDetailsUrl)
+      .then((response) => response.json())
+      .then((data) => setEmbedConfig(data))
+      .catch((error) => console.error("Error fetching embed config:", error));
+  }, []);
+
+  if (!embedConfig) return null;
+
+  const { ServerUrl, DashboardId, SiteIdentifier } = embedConfig;
+
   const customHTML = `
     <html>
       <head>
@@ -27,11 +44,13 @@ export default function HomeScreen() {
       function renderDashboard() {
         try {
           const dashboard = BoldBI.create({
-            serverUrl: "http://172.16.203.208/bi/api/site/site1",
-            dashboardId: "939bb278-8f9f-4a82-8123-bae55d5ea3cb",
-            embedContainerId: "dashboardContainer",
-            token: "NTg4Yzk1YTMtZTVhOS00NjRiLTgyNzEtNjlkMjRjZWJlMTg2"
-          });
+              serverUrl: "${ServerUrl + '/' + SiteIdentifier}",
+              dashboardId: "${DashboardId}",
+              embedContainerId: "dashboardContainer",
+              authorizationServer: {
+                  url: "${apiHost+authorizationServerAPI}"
+              }
+            });
           dashboard.loadDashboard();
         } catch (error) {
           console.error("Error loading dashboard:", error);
