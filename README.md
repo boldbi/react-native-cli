@@ -13,7 +13,7 @@ This Bold BI React Native CLI sample, using Node.js, includes examples of dashbo
 * [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 * [Android Studio](https://developer.android.com/studio)
 
-> **NOTE:** Node.js versions 12.13 to 22.14 are supported.
+> **NOTE:** Node.js versions 18.20 to 22.14 are supported.
 
 ### Supported Browsers
   
