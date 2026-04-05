@@ -57,7 +57,7 @@ export default function HomeScreen() {
         }
       }
 
-      loadScript('https://cdn.boldbi.com/embedded-sdk/v11.2.7/boldbi-embed.js', renderDashboard);
+      loadScript('https://cdn.boldbi.com/embedded-sdk/latest/boldbi-embed.js', renderDashboard);
     })();
     true;
   `;
